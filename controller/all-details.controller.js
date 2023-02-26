@@ -6,9 +6,10 @@ exports.getDetails = async (req, res) => {
   const data1 = fs.readFileSync("./html/1.html", "utf-8");
   const header = data1.replace(/<\/?(html)[^>]*>/gi, "").trim();
 
+
   const data2 = fs.readFileSync("./html/2.html", "utf-8");
   const footer = data2.replace(/<\/?(html)[^>]*>/gi, "").trim();
-
+  
   // Header Footer Status
   const headerfooterStatus = require("../models/header_footer.model");
   const header_footer_status = await headerfooterStatus.findOne();
@@ -54,13 +55,14 @@ exports.getDetails = async (req, res) => {
       default_settings_data: "Default Settings Data is not available",
       installedReports: "installedReports Data is not available",
     });
-  } else if (
-    header &&
-    footer &&
-    openTabData &&
-    defaultsettings &&
-    installedReports
-  )
+  } else 
+  // if (
+  //   header &&
+  //   footer &&
+  //   openTabData &&
+  //   defaultsettings &&
+  //   installedReports
+  // ) 
     res.status(200).send({
       code: 200,
       status: "Success",

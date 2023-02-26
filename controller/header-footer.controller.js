@@ -7,7 +7,7 @@ exports.headerfooter = async (req, res) => {
   const footer = req.body.footer;
   const header_footer = new headerfooterStatus(req.body);
 
-  if (header) {
+  if (header || header === "") {
     fs.writeFile("./html/1.html", `<html> ${header} </html>`, (err) => {
       if (err) {
         return res.status(500).end({
@@ -18,7 +18,7 @@ exports.headerfooter = async (req, res) => {
       }
     });
   }
-  if (footer) {
+  if (footer || footer === "") {
     fs.writeFile("./html/2.html", `<html> ${footer} </html>`, (err) => {
       if (err) {
         return res.status(500).send({
@@ -108,13 +108,13 @@ exports.headerfooter = async (req, res) => {
   //     }
   //   );
   // }
-  if (!header && !footer) {
-    return res.status(400).json({
-      code: 400,
-      status: "Bad Request",
-      message: "Both header and footer are not available",
-    });
-  }
+  // if (!header && !footer) {
+  //   return res.status(400).json({
+  //     code: 400,
+  //     status: "Bad Request",
+  //     message: "Both header and footer are not available",
+  //   });
+  // }
   res.send({
     code: 200,
     status: "Success",
