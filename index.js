@@ -27,10 +27,14 @@ app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, "/html")));
 
 app.get("/1.html", (req, res) => {
+  // Set the Cache-Control header to no-cache
+  res.setHeader("Cache-Control", "no-cache");
   res.sendFile(path.join(__dirname, "/html/1.html"));
 });
 
 app.get("/2.html", (req, res) => {
+  // Set the Cache-Control header to no-cache
+  res.setHeader("Cache-Control", "no-cache");
   res.sendFile(path.join(__dirname, "/html/2.html"));
 });
 
