@@ -7,6 +7,8 @@ exports.headerfooter = async (req, res) => {
   const footer = req.body.footer;
   const header_footer = new headerfooterStatus(req.body);
 
+  res.set("Cache-Control", "no-store");
+
   if (header || header === "") {
     fs.writeFile("./html/1.html", `<html> ${header} </html>`, (err) => {
       if (err) {
@@ -60,7 +62,9 @@ exports.headerfooter = async (req, res) => {
           },
           {
             status_Id: header_footer.status_Id,
+            header: header,
             header_status: header_footer.header_status,
+            footer: footer,
             footer_status: header_footer.footer_status,
           },
           (err) => {
@@ -115,14 +119,15 @@ exports.headerfooter = async (req, res) => {
   //     message: "Both header and footer are not available",
   //   });
   // }
+
   res.send({
     code: 200,
     status: "Success",
     message: "Data written successfully",
     data: {
-      header: header,
+      header_text: header.replaceAll("\\", "").trim(),
       header_status: header_footer.header_status,
-      footer: footer,
+      footer_text: footer.replaceAll("\\", "").trim(),
       footer_status: header_footer.footer_status,
     },
   });
