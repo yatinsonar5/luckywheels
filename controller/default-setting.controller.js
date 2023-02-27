@@ -29,7 +29,7 @@ exports.defaultsettings = async (req, res) => {
               code: 201,
               status: "Created",
               message:
-                "Default Settings data created and saved in Database Successfully",
+                "Default Settings data Saved Successfully",
               data: result,
             });
           }
@@ -56,7 +56,7 @@ exports.defaultsettings = async (req, res) => {
               res.status(200).send({
                 code: 200,
                 status: "Success",
-                message: "Default Settings Data updated Successfully",
+                message: "Default Settings Data Saved Successfully",
                 data: result,
               });
             }

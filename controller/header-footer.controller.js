@@ -123,7 +123,7 @@ exports.headerfooter = async (req, res) => {
   res.send({
     code: 200,
     status: "Success",
-    message: "Data written successfully",
+    message: "Data Saved successfully",
     data: {
       header_text: header_footer.header,
       header_status: header_footer.header_status,

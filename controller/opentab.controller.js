@@ -1,6 +1,6 @@
 // Post opentab Url Data
 
-//Using Database
+// Using Database
 
 const openTab = require("../models/opentab_model");
 
@@ -28,7 +28,7 @@ exports.opentab = async (req, res) => {
           res.status(201).send({
             code: 201,
             status: "Created",
-            message: "Data Saved in Database Successfully",
+            message: "Data Saved Successfully",
             data: result,
           });
         }
@@ -55,7 +55,7 @@ exports.opentab = async (req, res) => {
             res.status(200).send({
               code: 200,
               status: "Success",
-              message: "Data Updated Successfully",
+              message: "Data Saved Successfully",
               data: result,
             });
           }

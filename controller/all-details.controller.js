@@ -38,6 +38,13 @@ exports.getDetails = async (req, res) => {
     { _id: 0, __v: 0, urlId: 0 }
   );
 
+  // Version Control
+  const versionControlModel = require("../models/version_control.model");
+  const versioncontrol = await versionControlModel.findOne(
+    {},
+    { _id: 0, __v: 0, vcId: 0 }
+  );
+
   // Installed reports
   const HitCount = require("../models/installed_reports_model");
   const installedReports = await HitCount.findOne({}, { _id: 0, __v: 0 });
@@ -59,17 +66,9 @@ exports.getDetails = async (req, res) => {
       open_tab_data: "urlData is not available",
       default_settings_data: "Default Settings Data is not available",
       installedReports: "installedReports Data is not available",
+      versioncontrol: "versionControl Data is not available"
     });
-  }
-  // if (
-  //   header &&
-  //   footer &&
-  //   openTabData &&
-  //   defaultsettings &&
-  //   installedReports
-  // )
-  else {
-
+  } else {
     res.status(200).send({
       code: 200,
       status: "Success",
@@ -80,9 +79,9 @@ exports.getDetails = async (req, res) => {
         // footer_text: footer.replaceAll("\\", "").trim(),
         footer_status: header_footer.footer_status,
       },
-
       open_tab_data: openTabData,
       default_settings_data: defaultsettings,
+      version_Control_data: versioncontrol,
       installedReports: installedReports,
     });
   }

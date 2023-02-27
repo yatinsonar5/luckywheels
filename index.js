@@ -55,6 +55,11 @@ app.use("/", opentabRoute);
 const defaultsettingsRoute = require("./routes/defaultSetting.route");
 app.use("/", defaultsettingsRoute);
 
+// Version Control
+
+const versionControlRoute = require("./routes/versioncontrol.route");
+app.use("/", versionControlRoute);
+
 // Get all details
 const allDetailsRoute = require("./routes/allDetails.route");
 app.use("/", allDetailsRoute);
