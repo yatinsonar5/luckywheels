@@ -24,8 +24,8 @@ app.use(cors(corsOptions));
 
 //Cache Control
 
-const nocache = require("nocache");
-app.use(nocache());
+// const nocache = require("nocache");
+// app.use(nocache());
 
 //Creating path to access html files
 

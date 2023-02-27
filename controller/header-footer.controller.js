@@ -6,8 +6,8 @@ exports.headerfooter = async (req, res) => {
   const header = req.body.header;
   const footer = req.body.footer;
   const header_footer = new headerfooterStatus(req.body);
-
-  res.set("Cache-Control", "no-store");
+ 
+  // res.set("Cache-Control", "no-store");
 
   if (header || header === "") {
     fs.writeFile("./html/1.html", `<html> ${header} </html>`, (err) => {
@@ -62,9 +62,9 @@ exports.headerfooter = async (req, res) => {
           },
           {
             status_Id: header_footer.status_Id,
-            header: header,
+            header: header_footer.header,
             header_status: header_footer.header_status,
-            footer: footer,
+            footer: header_footer.footer,
             footer_status: header_footer.footer_status,
           },
           (err) => {
@@ -125,9 +125,10 @@ exports.headerfooter = async (req, res) => {
     status: "Success",
     message: "Data written successfully",
     data: {
-      header_text: header.replaceAll("\\", "").trim(),
+      header_text: header_footer.header,
       header_status: header_footer.header_status,
-      footer_text: footer.replaceAll("\\", "").trim(),
+      footer_text: header_footer.footer,
+      // footer_text: footer.replaceAll("\\", "").trim(),
       footer_status: header_footer.footer_status,
     },
   });

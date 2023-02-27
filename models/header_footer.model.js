@@ -5,17 +5,17 @@ const headerFooterStatusSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  header_status: {
-    type: Boolean,
-  },
-  footer_status: {
-    type: Boolean,
-  },
   header: {
     type: String,
   },
+  header_status: {
+    type: Boolean,
+  },
   footer: {
     type: String,
+  },
+  footer_status: {
+    type: Boolean,
   },
 });
 

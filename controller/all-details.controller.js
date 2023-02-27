@@ -2,7 +2,7 @@
 const fs = require("fs");
 
 exports.getDetails = async (req, res) => {
-  // res.setHeader("Content-Type", "text/plain");
+
   // Header-Footer Data
   // const data1 = fs.readFileSync("./html/1.html", "utf-8");
   // const html_header = data1.replace(/<\/?(html)[^>]*>/gi, "").trim();
@@ -18,7 +18,6 @@ exports.getDetails = async (req, res) => {
   );
   const header = header_footer.header;
   const footer = header_footer.footer;
-  // console.log(header)
 
   // const header_status = fs.readFileSync("./text/header_status.txt", "utf8");
   // const footer_status = fs.readFileSync("./text/footer_status.txt", "utf8");
@@ -70,14 +69,15 @@ exports.getDetails = async (req, res) => {
   //   installedReports
   // )
   else {
-    // console.log(footer)
+
     res.status(200).send({
       code: 200,
       status: "Success",
       header_footer_data: {
-        header_text: header.replaceAll("\\", "").trim(),
+        header_text: header_footer.header,
         header_status: header_footer.header_status,
-        footer_text: footer.replaceAll("\\", "").trim(),
+        footer_text: header_footer.footer,
+        // footer_text: footer.replaceAll("\\", "").trim(),
         footer_status: header_footer.footer_status,
       },
 
