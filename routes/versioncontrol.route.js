@@ -6,9 +6,6 @@ versionControlRouter.get(
   "/api/getversioncontrol",
   VersionControl.getversioncontrol
 );
-versionControlRouter.post(
-  "/api/versioncontrol",
-  VersionControl.versioncontrol
-);
+versionControlRouter.post("/api/versioncontrol", VersionControl.versioncontrol);
 
 module.exports = versionControlRouter;

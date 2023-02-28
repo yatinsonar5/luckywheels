@@ -45,8 +45,8 @@ exports.installedreports = async (req, res) => {
       });
     }
   };
-  //Initialize Middleware
 
+  //Initialize Middleware
   await installedreportsMiddleware(req, res, async () => {
     try {
       // Get hit count from database
@@ -68,6 +68,31 @@ exports.installedreports = async (req, res) => {
         code: 500,
         status: "Internal server error",
         Message: "Not able to connect with Database",
+      });
+    }
+  });
+};
+
+exports.getinstalledreports = (req,res) =>{
+  HitCount.findOne({}, { _id: 0, __v: 0 }, (err, result) => {
+    if (err) {
+      res.status(500).send({
+        code: 500,
+        status: "Internal Server Error",
+        message: "Not able to connect with database",
+      });
+    } else if (!result) {
+      res.status(404).send({
+        code: 404,
+        status: "Not Found",
+        message: "Installed Reports Data not found in database",
+      });
+    } else {
+      res.status(200).send({
+        code: 200,
+        status: "Success",
+        message: "Installed Reports Data fetched Successfully",
+        data: result,
       });
     }
   });

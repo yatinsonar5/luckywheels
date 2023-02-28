@@ -2,7 +2,6 @@
 const fs = require("fs");
 
 exports.getDetails = async (req, res) => {
-
   // Header-Footer Data
   // const data1 = fs.readFileSync("./html/1.html", "utf-8");
   // const html_header = data1.replace(/<\/?(html)[^>]*>/gi, "").trim();
@@ -10,7 +9,7 @@ exports.getDetails = async (req, res) => {
   // const data2 = fs.readFileSync("./html/2.html", "utf-8");
   // const html_footer = data2.replace(/<\/?(html)[^>]*>/gi, "").trim();
 
-  // Header Footer Status
+  // Header Footer
   const headerFooter = require("../models/header_footer.model");
   const header_footer = await headerFooter.findOne(
     {},
@@ -54,7 +53,8 @@ exports.getDetails = async (req, res) => {
     !footer &&
     !openTabData &&
     !defaultsettings &&
-    installedReports
+    !installedReports &&
+    !versioncontrol
   ) {
     res.status(404).send({
       code: 404,
@@ -66,7 +66,7 @@ exports.getDetails = async (req, res) => {
       open_tab_data: "urlData is not available",
       default_settings_data: "Default Settings Data is not available",
       installedReports: "installedReports Data is not available",
-      versioncontrol: "versionControl Data is not available"
+      versioncontrol: "versionControl Data is not available",
     });
   } else {
     res.status(200).send({

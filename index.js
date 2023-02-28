@@ -56,7 +56,6 @@ const defaultsettingsRoute = require("./routes/defaultSetting.route");
 app.use("/", defaultsettingsRoute);
 
 // Version Control
-
 const versionControlRoute = require("./routes/versioncontrol.route");
 app.use("/", versionControlRoute);
 
