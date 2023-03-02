@@ -6,11 +6,13 @@ exports.headerfooter = async (req, res) => {
   const header = req.body.header;
   const footer = req.body.footer;
   const header_footer = new headerfooterStatus(req.body);
+
+  console.log(header_footer)
  
   // res.set("Cache-Control", "no-store");
 
   if (header || header === "") {
-    fs.writeFile("./html/1.html", `<html> ${header} </html>`, (err) => {
+    fs.writeFile("./html/header.html", `<html> ${header} </html>`, (err) => {
       if (err) {
         return res.status(500).end({
           code: 500,
@@ -21,7 +23,7 @@ exports.headerfooter = async (req, res) => {
     });
   }
   if (footer || footer === "") {
-    fs.writeFile("./html/2.html", `<html> ${footer} </html>`, (err) => {
+    fs.writeFile("./html/footer.html", `<html> ${footer} </html>`, (err) => {
       if (err) {
         return res.status(500).send({
           code: 500,
@@ -81,6 +83,20 @@ exports.headerfooter = async (req, res) => {
       }
     }
   );
+  res.send({
+    code: 200,
+    status: "Success",
+    message: "Data Saved successfully",
+    data: {
+      header_text: header_footer.header,
+      header_status: header_footer.header_status,
+      footer_text: header_footer.footer,
+      // footer_text: footer.replaceAll("\\", "").trim(),
+      footer_status: header_footer.footer_status,
+    },
+  });
+};
+
 
   // To write status in text file
 
@@ -119,17 +135,3 @@ exports.headerfooter = async (req, res) => {
   //     message: "Both header and footer are not available",
   //   });
   // }
-
-  res.send({
-    code: 200,
-    status: "Success",
-    message: "Data Saved successfully",
-    data: {
-      header_text: header_footer.header,
-      header_status: header_footer.header_status,
-      footer_text: header_footer.footer,
-      // footer_text: footer.replaceAll("\\", "").trim(),
-      footer_status: header_footer.footer_status,
-    },
-  });
-};

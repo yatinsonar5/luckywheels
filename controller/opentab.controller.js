@@ -56,7 +56,12 @@ exports.opentab = async (req, res) => {
               code: 200,
               status: "Success",
               message: "Data Saved Successfully",
-              data: result,
+              data: {
+                url: urlData.url,
+                time: urlData.time,
+                open_tab_status: urlData.open_tab_status,
+                message: result,
+              },
             });
           }
         }

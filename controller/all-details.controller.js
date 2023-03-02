@@ -18,11 +18,7 @@ exports.getDetails = async (req, res) => {
   const header = header_footer.header;
   const footer = header_footer.footer;
 
-  // const header_status = fs.readFileSync("./text/header_status.txt", "utf8");
-  // const footer_status = fs.readFileSync("./text/footer_status.txt", "utf8");
-
   // Opentab Data
-  // const urlData = fs.readFileSync("./text/url.txt", "utf8");
   const openTabModel = require("../models/opentab_model");
   const openTabData = await openTabModel.findOne(
     {},
@@ -30,7 +26,6 @@ exports.getDetails = async (req, res) => {
   );
 
   // Default settings
-  // const defaultsettings = fs.readFileSync("./text/default.txt", "utf8");
   const defaultSettingsModel = require("../models/default_setting.model");
   const defaultsettings = await defaultSettingsModel.findOne(
     {},
@@ -48,13 +43,29 @@ exports.getDetails = async (req, res) => {
   const HitCount = require("../models/installed_reports_model");
   const installedReports = await HitCount.findOne({}, { _id: 0, __v: 0 });
 
+  // Tray Banner
+  const TrayBanner = require("../models/traybanner.model");
+  const headerBanner = await TrayBanner.findOne(
+    {},
+    { _id: 0, __v: 0, tray_Id: 0 }
+  );
+
+  // Tray Add Text
+  const TrayTextAdd = require("../models/traytextadd.model");
+  const traytextadd = await TrayTextAdd.findOne(
+    {},
+    { _id: 0, __v: 0, textId: 0 }
+  );
+
   if (
     !header &&
     !footer &&
     !openTabData &&
     !defaultsettings &&
     !installedReports &&
-    !versioncontrol
+    !versioncontrol &&
+    !headerBanner &&
+    !traytextadd
   ) {
     res.status(404).send({
       code: 404,
@@ -67,6 +78,8 @@ exports.getDetails = async (req, res) => {
       default_settings_data: "Default Settings Data is not available",
       installedReports: "installedReports Data is not available",
       versioncontrol: "versionControl Data is not available",
+      headerBanner: "HeaderBanner Data is not available",
+      traytextadd: "Tray Text Data is not available",
     });
   } else {
     res.status(200).send({
@@ -76,13 +89,14 @@ exports.getDetails = async (req, res) => {
         header_text: header_footer.header,
         header_status: header_footer.header_status,
         footer_text: header_footer.footer,
-        // footer_text: footer.replaceAll("\\", "").trim(),
         footer_status: header_footer.footer_status,
       },
       open_tab_data: openTabData,
       default_settings_data: defaultsettings,
       version_Control_data: versioncontrol,
       installedReports: installedReports,
+      headerBanner: headerBanner,
+      traytext: traytextadd,
     });
   }
 };

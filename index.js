@@ -31,16 +31,22 @@ app.use(cors(corsOptions));
 
 app.use(express.static(path.join(__dirname, "/html")));
 
-app.get("/1.html", (req, res) => {
+app.get("/header.html", (req, res) => {
   // Set the Cache-Control header to no-cache
   res.setHeader("Cache-Control", "no-cache");
-  res.sendFile(path.join(__dirname, "/html/1.html"));
+  res.sendFile(path.join(__dirname, "/html/header.html"));
 });
 
-app.get("/2.html", (req, res) => {
+app.get("/footer.html", (req, res) => {
   // Set the Cache-Control header to no-cache
   res.setHeader("Cache-Control", "no-cache");
-  res.sendFile(path.join(__dirname, "/html/2.html"));
+  res.sendFile(path.join(__dirname, "/html/footer.html"));
+});
+
+app.get("/headerbnanner.html", (req, res) => {
+  // Set the Cache-Control header to no-cache
+  res.setHeader("Cache-Control", "no-cache");
+  res.sendFile(path.join(__dirname, "/html/headernanner.html"));
 });
 
 //Posting Header Footer Content
@@ -74,6 +80,14 @@ app.use("/", loginRoutes);
 // Installed Reports
 const installedReportsRoutes = require("./routes/installedReports.route");
 app.use("/", installedReportsRoutes);
+
+// Tray Add Text
+const trayAddTextRoutes = require("./routes/traytextadd.route");
+app.use("/", trayAddTextRoutes);
+
+// Tray Banner
+const trayBannerRoutes = require("./routes/traybanner.route");
+app.use("/", trayBannerRoutes);
 
 // Port
 const port = process.env.PORT;

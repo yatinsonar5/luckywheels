@@ -5,7 +5,6 @@ const HitCount = require("../models/installed_reports_model");
 // Create API endpoint to return hit count for a macUser
 
 exports.installedreports = async (req, res) => {
-
   // Setting up middleware
   const installedreportsMiddleware = async (req, res, next) => {
     const macId = req.body.macId;
@@ -73,7 +72,7 @@ exports.installedreports = async (req, res) => {
   });
 };
 
-exports.getinstalledreports = (req,res) =>{
+exports.getinstalledreports = (req, res) => {
   HitCount.findOne({}, { _id: 0, __v: 0 }, (err, result) => {
     if (err) {
       res.status(500).send({
