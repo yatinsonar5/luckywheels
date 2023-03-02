@@ -18,12 +18,12 @@ exports.getDetails = async (req, res) => {
   const header = header_footer.header;
   const footer = header_footer.footer;
 
-  //HeaderFooter Time Interval
-  const TimeInterval = require("../models/time_interval.model");
-  const header_footer_time = await TimeInterval.findOne(
-    {},
-    { _id: 0, __v: 0, timeId: 0 }
-  );
+  // //HeaderFooter Time Interval
+  // const TimeInterval = require("../models/time_interval.model");
+  // const header_footer_time = await TimeInterval.findOne(
+  //   {},
+  //   { _id: 0, __v: 0, timeId: 0 }
+  // );
 
   // Opentab Data
   const openTabModel = require("../models/opentab_model");
@@ -72,8 +72,8 @@ exports.getDetails = async (req, res) => {
     !installedReports &&
     !versioncontrol &&
     !headerBanner &&
-    !traytextadd &&
-    !header_footer_time
+    !traytextadd
+    
   ) {
     res.status(404).send({
       code: 404,
@@ -97,10 +97,11 @@ exports.getDetails = async (req, res) => {
       header_footer_data: {
         header_text: header_footer.header,
         header_status: header_footer.header_status,
+        header_time_interval: header_footer.header_time_interval,
         footer_text: header_footer.footer,
         footer_status: header_footer.footer_status,
+        footer_time_interval: header_footer.footer_time_interval
       },
-      header_footer_time: header_footer_time,
       open_tab_data: openTabData,
       default_settings_data: defaultsettings,
       version_Control_data: versioncontrol,

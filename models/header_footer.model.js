@@ -10,12 +10,18 @@ const headerFooterStatusSchema = new mongoose.Schema({
   },
   header_status: {
     type: Boolean,
+  },  
+  header_time_interval: {
+    type: Number,
   },
   footer: {
     type: String,
   },
   footer_status: {
     type: Boolean,
+  },
+   footer_time_interval: {
+    type: Number,
   },
 });
 

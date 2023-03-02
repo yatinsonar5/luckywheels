@@ -54,8 +54,8 @@ const headerfooterRoute = require("./routes/headerfooter.route");
 app.use("/", headerfooterRoute);
 
 //HeaderFooter Time Interval
-const headerfooterTimeRoute = require("./routes/timeinterval.route");
-app.use("/", headerfooterTimeRoute);
+// const headerfooterTimeRoute = require("./routes/timeinterval.route");
+// app.use("/", headerfooterTimeRoute);
 
 // Opentab Url Data
 const opentabRoute = require("./routes/opentab.route");
