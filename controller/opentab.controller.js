@@ -73,7 +73,6 @@ exports.opentab = async (req, res) => {
 // Get UrlData
 
 exports.getopentab = (req, res) => {
-  const url = req.query.url;
   openTab.findOne({}, { _id: 0, urlId: 0, __v: 0 }, (err, result) => {
     if (err) {
       res.status(500).send({
