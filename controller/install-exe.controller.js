@@ -1,27 +1,9 @@
-const fs = require("fs");
-const TrayBanner = require("../models/traybanner.model");
+const InstallExe = require("../models/installexe.model");
 
-exports.traybanner = async (req, res) => {
-  const header = req.body.header_banner;
-  const trayBanner = new TrayBanner(req.body);
+exports.install_exe = async (req, res) => {
+  const installExeData = new InstallExe(req.body);
 
-  if (header || header === "") {
-    fs.writeFile(
-      "./html/headerBanner.html",
-      `<html> ${header} </html>`,
-      (err) => {
-        if (err) {
-          return res.status(500).end({
-            code: 500,
-            status: "Internal Server Error",
-            error: "Error writing to file",
-          });
-        }
-      }
-    );
-  }
-
-  TrayBanner.findOne({ tray_Id: trayBanner.tray_Id }, (err, result) => {
+  InstallExe.findOne({ exe_Id: installExeData.exe_Id }, (err, result) => {
     if (err) {
       res.status(500).send({
         code: 500,
@@ -30,8 +12,8 @@ exports.traybanner = async (req, res) => {
       });
     }
     if (!result) {
-      const newTrayBanner = new TrayBanner(trayBanner);
-      newTrayBanner.save((err, result) => {
+      const newInstallExe = new InstallExe(installExeData);
+      newInstallExe.save((err, result) => {
         if (err) {
           res.status(500).send({
             code: 500,
@@ -48,15 +30,15 @@ exports.traybanner = async (req, res) => {
         }
       });
     } else if (result) {
-      TrayBanner.replaceOne(
+      InstallExe.replaceOne(
         {
-          tray_Id: trayBanner.tray_Id,
+          exe_Id: installExeData.exe_Id,
         },
         {
-          tray_Id: trayBanner.tray_Id,
-          header_banner: trayBanner.header_banner,
-          header_banner_status: trayBanner.header_banner_status,
-          time: trayBanner.time
+          exe_Id: installExeData.exe_Id,
+          exe_path: installExeData.exe_path,
+          time: installExeData.time,
+          status: installExeData.status,
         },
         (err, result) => {
           if (err) {
@@ -71,8 +53,9 @@ exports.traybanner = async (req, res) => {
               status: "Success",
               message: "Data Saved Successfully",
               data: {
-                header_banner: trayBanner.header_banner,
-                header_banner_status: trayBanner.header_banner_status,
+                exe_path: installExeData.exe_path,
+                time: installExeData.time,
+                status: installExeData.status,
                 message: result,
               },
             });
@@ -83,8 +66,10 @@ exports.traybanner = async (req, res) => {
   });
 };
 
-exports.gettraybanner = (req, res) => {
-  TrayBanner.findOne({}, { _id: 0, tray_Id: 0, __v: 0 }, (err, result) => {
+// Get UrlData
+
+exports.getinstall_exe = (req, res) => {
+  InstallExe.findOne({}, { _id: 0, exe_Id: 0, __v: 0 }, (err, result) => {
     if (err) {
       res.status(500).send({
         code: 500,

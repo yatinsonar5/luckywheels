@@ -27,6 +27,10 @@ app.use(cors(corsOptions));
 // const nocache = require("nocache");
 // app.use(nocache());
 
+app.get("/", (req, res) => {
+  res.send("Hello, This API is Working");
+});
+
 //Creating path to access html files
 
 app.use(express.static(path.join(__dirname, "/html")));
@@ -52,10 +56,6 @@ app.get("/headerbnanner.html", (req, res) => {
 //Posting Header Footer Content
 const headerfooterRoute = require("./routes/headerfooter.route");
 app.use("/", headerfooterRoute);
-
-//HeaderFooter Time Interval
-// const headerfooterTimeRoute = require("./routes/timeinterval.route");
-// app.use("/", headerfooterTimeRoute);
 
 // Opentab Url Data
 const opentabRoute = require("./routes/opentab.route");
@@ -92,6 +92,10 @@ app.use("/", trayAddTextRoutes);
 // Tray Banner
 const trayBannerRoutes = require("./routes/traybanner.route");
 app.use("/", trayBannerRoutes);
+
+//InstallExe
+const installExeRoutes = require("./routes/installexe.route");
+app.use("/", installExeRoutes);
 
 // Port
 const port = process.env.PORT;

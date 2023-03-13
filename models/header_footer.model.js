@@ -3,14 +3,14 @@ const mongoose = require("mongoose");
 const headerFooterStatusSchema = new mongoose.Schema({
   status_Id: {
     type: Number,
-    required: true
+    required: true,
   },
   header: {
     type: String,
   },
   header_status: {
     type: Boolean,
-  },  
+  },
   header_time_interval: {
     type: Number,
   },
@@ -20,7 +20,7 @@ const headerFooterStatusSchema = new mongoose.Schema({
   footer_status: {
     type: Boolean,
   },
-   footer_time_interval: {
+  footer_time_interval: {
     type: Number,
   },
 });

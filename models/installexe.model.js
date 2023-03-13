@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
-const trayBannerSchema = new mongoose.Schema({
-  tray_Id: {
+const installExeSchema = new mongoose.Schema({
+  exe_Id: {
     type: Number,
     required: true,
   },
-  header_banner: {
+  exe_path: {
     type: String,
   },
-  header_banner_status: {
+  status: {
     type: Boolean,
   },
   time: {
@@ -16,4 +16,4 @@ const trayBannerSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("trayBanner", trayBannerSchema);
+module.exports = mongoose.model("installExe", installExeSchema);

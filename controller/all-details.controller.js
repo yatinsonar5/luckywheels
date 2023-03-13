@@ -18,13 +18,6 @@ exports.getDetails = async (req, res) => {
   const header = header_footer.header;
   const footer = header_footer.footer;
 
-  // //HeaderFooter Time Interval
-  // const TimeInterval = require("../models/time_interval.model");
-  // const header_footer_time = await TimeInterval.findOne(
-  //   {},
-  //   { _id: 0, __v: 0, timeId: 0 }
-  // );
-
   // Opentab Data
   const openTabModel = require("../models/opentab_model");
   const openTabData = await openTabModel.findOne(
@@ -64,6 +57,13 @@ exports.getDetails = async (req, res) => {
     { _id: 0, __v: 0, textId: 0 }
   );
 
+    // Install Exe
+    const InstallExe = require("../models/installexe.model");
+    const installExeData = await InstallExe.findOne(
+      {},
+      { _id: 0, __v: 0, exe_Id: 0 }
+    );
+
   if (
     !header &&
     !footer &&
@@ -72,8 +72,8 @@ exports.getDetails = async (req, res) => {
     !installedReports &&
     !versioncontrol &&
     !headerBanner &&
-    !traytextadd
-    
+    !traytextadd &&
+    !installExeData
   ) {
     res.status(404).send({
       code: 404,
@@ -89,6 +89,7 @@ exports.getDetails = async (req, res) => {
       versioncontrol: "versionControl Data is not available",
       headerBanner: "HeaderBanner Data is not available",
       traytextadd: "Tray Text Data is not available",
+      install_Exe_Data: "Install Exe Data is not available"
     });
   } else {
     res.status(200).send({
@@ -100,7 +101,7 @@ exports.getDetails = async (req, res) => {
         header_time_interval: header_footer.header_time_interval,
         footer_text: header_footer.footer,
         footer_status: header_footer.footer_status,
-        footer_time_interval: header_footer.footer_time_interval
+        footer_time_interval: header_footer.footer_time_interval,
       },
       open_tab_data: openTabData,
       default_settings_data: defaultsettings,
@@ -108,6 +109,7 @@ exports.getDetails = async (req, res) => {
       installedReports: installedReports,
       headerBanner: headerBanner,
       traytext: traytextadd,
+      install_Exe_Data : installExeData,
     });
   }
 };
