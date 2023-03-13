@@ -73,6 +73,7 @@ exports.traybanner = async (req, res) => {
               data: {
                 header_banner: trayBanner.header_banner,
                 header_banner_status: trayBanner.header_banner_status,
+                time: trayBanner.time,
                 message: result,
               },
             });
