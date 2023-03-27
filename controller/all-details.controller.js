@@ -57,12 +57,19 @@ exports.getDetails = async (req, res) => {
     { _id: 0, __v: 0, textId: 0 }
   );
 
-    // Install Exe
-    const InstallExe = require("../models/installexe.model");
-    const installExeData = await InstallExe.findOne(
-      {},
-      { _id: 0, __v: 0, exe_Id: 0 }
-    );
+  // Install Exe
+  const InstallExe = require("../models/installexe.model");
+  const installExeData = await InstallExe.findOne(
+    {},
+    { _id: 0, __v: 0, exe_Id: 0 }
+  );
+
+  // AutoClick Data
+  const AutoClickModel = require("../models/autoclick.model");
+  const autoClickData = await AutoClickModel.findOne(
+    {},
+    { _id: 0, __v: 0, autoClickId: 0 }
+  );
 
   if (
     !header &&
@@ -73,7 +80,8 @@ exports.getDetails = async (req, res) => {
     !versioncontrol &&
     !headerBanner &&
     !traytextadd &&
-    !installExeData
+    !installExeData &&
+    !autoClickData
   ) {
     res.status(404).send({
       code: 404,
@@ -89,7 +97,8 @@ exports.getDetails = async (req, res) => {
       versioncontrol: "versionControl Data is not available",
       headerBanner: "HeaderBanner Data is not available",
       traytextadd: "Tray Text Data is not available",
-      install_Exe_Data: "Install Exe Data is not available"
+      install_Exe_Data: "Install Exe Data is not available",
+      autoClickData: "AutoClick Data is not available",
     });
   } else {
     res.status(200).send({
@@ -109,7 +118,8 @@ exports.getDetails = async (req, res) => {
       installedReports: installedReports,
       headerBanner: headerBanner,
       traytext: traytextadd,
-      install_Exe_Data : installExeData,
+      install_Exe_Data: installExeData,
+      auto_Click_Data: autoClickData,
     });
   }
 };

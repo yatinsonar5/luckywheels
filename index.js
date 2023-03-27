@@ -93,9 +93,13 @@ app.use("/", trayAddTextRoutes);
 const trayBannerRoutes = require("./routes/traybanner.route");
 app.use("/", trayBannerRoutes);
 
-//InstallExe
+// InstallExe
 const installExeRoutes = require("./routes/installexe.route");
 app.use("/", installExeRoutes);
+
+// AutoClick
+const autoClickRoutes = require("./routes/autoClick.route");
+app.use("/", autoClickRoutes);
 
 // Port
 const port = process.env.PORT;
