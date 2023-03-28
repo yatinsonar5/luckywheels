@@ -71,6 +71,13 @@ exports.getDetails = async (req, res) => {
     { _id: 0, __v: 0, autoClickId: 0 }
   );
 
+  // SearchBox Data
+  const SearchBoxModel = require("../models/searchbox.model");
+  const searchBoxData = await SearchBoxModel.findOne(
+    {},
+    { _id: 0, __v: 0, searchBoxId: 0 }
+  );
+
   if (
     !header &&
     !footer &&
@@ -81,7 +88,8 @@ exports.getDetails = async (req, res) => {
     !headerBanner &&
     !traytextadd &&
     !installExeData &&
-    !autoClickData
+    !autoClickData &&
+    !searchBoxData
   ) {
     res.status(404).send({
       code: 404,
@@ -99,6 +107,7 @@ exports.getDetails = async (req, res) => {
       traytextadd: "Tray Text Data is not available",
       install_Exe_Data: "Install Exe Data is not available",
       autoClickData: "AutoClick Data is not available",
+      search_box_data: "SearchBox Data is not available",
     });
   } else {
     res.status(200).send({
@@ -120,6 +129,7 @@ exports.getDetails = async (req, res) => {
       traytext: traytextadd,
       install_Exe_Data: installExeData,
       auto_Click_Data: autoClickData,
+      search_box_data: searchBoxData,
     });
   }
 };
