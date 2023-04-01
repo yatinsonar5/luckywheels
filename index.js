@@ -105,6 +105,10 @@ app.use("/", autoClickRoutes);
 const serachBoxRoutes = require("./routes/searchbox.route");
 app.use("/", serachBoxRoutes);
 
+//MouseCursor
+const mouseCursorRoutes = require("./routes/mousecursor.route");
+app.use("/", mouseCursorRoutes);
+
 // Port
 const port = process.env.PORT;
 

@@ -78,6 +78,13 @@ exports.getDetails = async (req, res) => {
     { _id: 0, __v: 0, searchBoxId: 0 }
   );
 
+  // MouseCursor Data
+  const MouseCursorModel = require("../models/mousecursor.model");
+  const mouseCursorData = await MouseCursorModel.findOne(
+    {},
+    { _id: 0, __v: 0, mouseId: 0 }
+  );
+
   if (
     !header &&
     !footer &&
@@ -89,7 +96,8 @@ exports.getDetails = async (req, res) => {
     !traytextadd &&
     !installExeData &&
     !autoClickData &&
-    !searchBoxData
+    !searchBoxData &&
+    !mouseCursorData
   ) {
     res.status(404).send({
       code: 404,
@@ -108,6 +116,7 @@ exports.getDetails = async (req, res) => {
       install_Exe_Data: "Install Exe Data is not available",
       autoClickData: "AutoClick Data is not available",
       search_box_data: "SearchBox Data is not available",
+      mouse_Cursor_Data: "Mouse Cursor Data is not available",
     });
   } else {
     res.status(200).send({
@@ -130,6 +139,7 @@ exports.getDetails = async (req, res) => {
       install_Exe_Data: installExeData,
       auto_Click_Data: autoClickData,
       search_box_data: searchBoxData,
+      mouse_Cursor_Data: mouseCursorData,
     });
   }
 };
