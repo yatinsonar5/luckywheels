@@ -42,6 +42,7 @@ exports.mousecursor = async (req, res) => {
           x_max: mouseCursorData.x_max,
           y_min: mouseCursorData.y_min,
           y_max: mouseCursorData.y_max,
+          no_of_clicks: mouseCursorData.no_of_clicks,
         },
         (err, result) => {
           if (err) {
@@ -62,6 +63,7 @@ exports.mousecursor = async (req, res) => {
                 x_max: mouseCursorData.x_max,
                 y_min: mouseCursorData.y_min,
                 y_max: mouseCursorData.y_max,
+                no_of_clicks: mouseCursorData.no_of_clicks,
                 message: result,
               },
             });

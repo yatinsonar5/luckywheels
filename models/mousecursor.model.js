@@ -22,6 +22,9 @@ const mouseCursorSchema = new mongoose.Schema({
   y_max: {
     type: Number,
   },
+  no_of_clicks: {
+    type: Number,
+  },
 });
 
 module.exports = mongoose.model("mouseCursor", mouseCursorSchema);
